@@ -58,9 +58,16 @@ Task tool (superpowers-trainual:code-reviewer):
   HEAD_SHA: [sha]
 ```
 
-## Step 5: Run Local CI (if available)
+## Step 5: Run CI Checks
 
-If `bin/ci` exists, run it. Can run in parallel with review agents. If it fails, stop and report.
+Run the applicable checks (can run in parallel with review agents). If any fail, stop and report.
+
+```bash
+bundle exec rubocop                          # Ruby lint
+bundle exec rspec spec/path/to/changed_specs # Ruby tests for changed files
+yarn lint                                    # JS/TS lint (if frontend files changed)
+yarn test [changed].test.tsx                 # Frontend tests (if frontend files changed)
+```
 
 ## Step 6: Report
 

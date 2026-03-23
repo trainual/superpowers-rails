@@ -54,7 +54,11 @@ Task tool (general-purpose):
     1. Implement exactly what the task specifies
     2. Write tests (following TDD if task says to)
     3. Verify implementation works
-    4. Run bin/ci if it exists (must pass before handoff)
+    4. Run CI checks — all must pass before handoff:
+       - `bundle exec rubocop` (Ruby lint)
+       - `bundle exec rspec spec/path/to/changed_specs.rb` (Ruby tests for changed files)
+       - `yarn lint` (JS/TS lint, if frontend files changed)
+       - `yarn test [changed].test.tsx` (frontend tests, if frontend files changed)
     5. Commit your work
     6. Self-review (see below)
     7. Report back
@@ -126,7 +130,7 @@ Task tool (general-purpose):
     - **Status:** DONE | DONE_WITH_CONCERNS | BLOCKED | NEEDS_CONTEXT
     - What you implemented (or what you attempted, if blocked)
     - What you tested and test results
-    - bin/ci result (if exists)
+    - CI results (rubocop, rspec, yarn lint, yarn test — whichever apply)
     - Files changed
     - Self-review findings (if any)
     - Any issues or concerns
